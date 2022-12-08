@@ -1,31 +1,77 @@
-<h1>Edit</h1>
-<%= form_for :student, url: student_path(@student), method: :patch do |f| %>
-  <p>
-    Lastname<br>
-    <%= f.text_field :lastname %>
-  </p>
-  <p>
-    Group<br>
-    <%= f.text_field :group %>
-  </p>
-  <p>
-    session id<br>
-    <%= f.number_field :winter_session_id %>
-  </p>
-  <p>
-    Marks
-  </p>
-  <p>
-    Geometry<br>
-    <%= f.number_field :geom, min: 1, max: 5 %>
-  </p>
-  <p>
-    Algebra<br>
-    <%= f.number_field :alg, min: 1, max: 5%>
-  </p>
-  <p>
-    IT<br>
-    <%= f.number_field :inf, min: 1, max: 5 %>
-  </p>
-  <%= f.submit "Update student" %>
-<% end %>
+<nav class="navbar navbar-expand-lg">
+  <ul class="navbar-nav">
+    <li class="active">
+      <%= link_to t('list'), students_path, :class => 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t('registration'), new_student_path, :class => 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t('statistic'), :pages, :class => 'nav-link' %>
+    </li>
+    <li class="nav-item" >
+      <%= link_to 'English', root_path(locale: :en), :class => 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Українська', root_path(locale: :ua), :class => 'nav-link' %>
+    </li>
+  </ul>
+</nav>
+
+<h1><%= t('edit') %></h1>
+
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+               class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+               alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <%= form_for :student, url: student_path(@student), method: :patch do |f| %>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example1q"> <%= t('last_name') %> </label>
+                <%= f.text_field :lastname, :class => 'form-control', id: 'form3Example1q' %>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label" for="form3Example2q"><%= t('group') %> </label>
+                <%= f.text_field :group, :class => 'form-control', id: 'form3Example2q' %>
+              </div>
+
+              <div class="mb-4">
+                <label for="session" class="form-label"><%= t('group') %></label>
+                <%= f.select :winter_session_id, WinterSession.all.collect { |p| [ p.year, p.id ] },
+                             include_blank: true, :class => 'select', id: 'session' %>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 mb-4">
+                  <div class="form-control">
+                    <label for="geom" class="form-label"><%= t('geometry') %></label>
+                    <%= f.number_field :geom, min: 1, max: 5, :class => 'form-control', id: 'geom' %>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-control">
+                    <label for="alg" class="form-label"><%= t('algebra') %></label>
+                    <%= f.number_field :alg, min: 1, max: 5, :class => 'form-control', id: 'alg'%>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                  <div class="form-control">
+                    <label for="inf" class="form-label"><%= t('IT') %></label>
+                    <%= f.number_field :inf, min: 1, max: 5, :class => 'form-control', id: 'inf' %>
+                  </div>
+                </div>
+              </div>
+              <%= f.submit(t('update_student') , {:class => 'btn btn-success btn-lg mb-1'})%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

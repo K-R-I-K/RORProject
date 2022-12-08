@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <%= link_to t('list'), students_path, :class => 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t('registration'), new_student_path, :class => 'nav-link' %>
+    </li>
+    <li class="active">
+      <%= link_to t('statistic'), :pages, :class => 'nav-link' %>
+    </li>
+    <li class="nav-item" >
+      <%= link_to 'English', root_path(locale: :en), :class => 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Українська', root_path(locale: :ua), :class => 'nav-link' %>
+    </li>
+  </ul>
+</nav>
+
+<h3><%= t('students_with_debts') %></h3>
+<% @students_with_debts.each do |s| %>
+  <%= t('last_name') %> <%= s.lastname %>
+  <%= t('group') %> <%= s.group %>
+  <%= t('session') %> <%= WinterSession.find(s.winter_session_id).year %>
+  <%= t('geometry') %>: <%= s.geom %>
+  <%= t('algebra') %>: <%= s.alg %>
+  <%= t('IT') %>: <%= s.inf %>
+  <br>
+<% end %>
+
+<h3><%= t('number_of_grades') %></h3>
+1: <%= @number_of_grades[1] %><br>
+2: <%= @number_of_grades[2] %><br>
+3: <%= @number_of_grades[3] %><br>
+4: <%= @number_of_grades[4] %><br>
+5: <%= @number_of_grades[5] %><br>
+
+<h3><%= t('academic quality') %></h3>
+<%= t('percent academic performance') + ": " + @percent_academic_performance.to_s %><br>
+<%= t('percent of knowledge quality') + ": " + @percent_of_knowledge_quality.to_s %><br>
+<%= t('degree of students education') + ": " + @degree_of_students_education.to_s %><br>
+
+<h3><%= t('best_subject') %></h3>
+<%= t('The best subject is') + " " + t("#{@best_subject.to_s}") %>
+
+<h3><%= t('groups_rating') %></h3>
+<ol>
+  <% @groups_rating.each do |group| %>
+    <li>
+      <%= group %>
+    </li>
+  <% end %>
+</ol>
+
+

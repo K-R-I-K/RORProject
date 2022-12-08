@@ -1,1 +1,32 @@
-<h1><%= @student.lastname %></h1>
+<nav class="navbar navbar-expand-lg">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <%= link_to t('list'), students_path, :class => 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t('registration'), new_student_path, :class => 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t('statistic'), :pages, :class => 'nav-link' %>
+    </li>
+    <li class="nav-item" >
+      <%= link_to 'English', root_path(locale: :en), :class => 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Українська', root_path(locale: :ua), :class => 'nav-link' %>
+    </li>
+  </ul>
+</nav>
+
+<h1>
+  <%= t('last_name') %> <%= @student.lastname %>
+  <%= t('group') %> <%= @student.group %>
+  <br>
+  <%= t('session') %> <%= WinterSession.find(@student.winter_session_id).year %>
+  <br>
+  <%= t('marks') %>
+  <br>
+  <%= t('geometry') %>: <%= @student.geom %>
+  <%= t('algebra') %>: <%= @student.alg %>
+  <%= t('IT') %>: <%= @student.inf %>
+</h1>

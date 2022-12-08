@@ -12,23 +12,9 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg">
-      <ul class="navbar-nav">
-        <li class="active">
-          <a href="/students" class="nav-link">List</a>
-          <!--<dev class="nav-link">
-            <%#= link_to "List", students_path %>
-          </dev>-->
-        </li>
-        <li class="nav-item">
-          <a href="/students/new" class="nav-link">Registration</a>
-        </li>
+    <div class="container">
+      <%= yield %>
+    </div>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">Contact Us</a>
-        </li>
-      </ul>
-    </nav>
-    <%= yield %>
   </body>
 </html>
